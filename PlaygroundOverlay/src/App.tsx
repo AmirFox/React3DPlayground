@@ -1,10 +1,19 @@
 import { useState } from 'react'
+import {Unity, useUnityContext } from "react-unity-webgl";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { unityProvider } = useUnityContext({
+    loaderUrl: "/Embedded/Build/Build.loader.js",
+    dataUrl: "/Embedded/Build/Build.data.gz",
+    frameworkUrl: "/Embedded/Build/Build.framework.js.gz",
+    codeUrl: "/Embedded/Build/Build.wasm.gz",
+  });
+
+  return <Unity unityProvider={unityProvider} />
 
   return (
     <>
