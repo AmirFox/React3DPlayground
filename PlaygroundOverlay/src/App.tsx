@@ -1,44 +1,46 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import {Unity, useUnityContext } from "react-unity-webgl";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const { unityProvider } = useUnityContext({
-    loaderUrl: "/Embedded/Build/Build.loader.js",
-    dataUrl: "/Embedded/Build/Build.data.gz",
-    frameworkUrl: "/Embedded/Build/Build.framework.js.gz",
-    codeUrl: "/Embedded/Build/Build.wasm.gz",
+  const { unityProvider, sendMessage } = useUnityContext({
+    loaderUrl: "/Embedded/Build/Embedded.loader.js",
+    dataUrl: "/Embedded/Build/Embedded.data.gz",
+    frameworkUrl: "/Embedded/Build/Embedded.framework.js.gz",
+    codeUrl: "/Embedded/Build/Embedded.wasm.gz",
   });
 
-  return <Unity unityProvider={unityProvider} />
+  function sendMoveLeft()
+  {
+    sendMessage("Cube", "MoveLeft");
+  }
+
+  function sendMoveRight()
+  {
+    sendMessage("Cube", "MoveRight");
+  }
+
+  function sendMoveUp()
+  {
+    sendMessage("Cube", "MoveUp");
+  }
+
+  function sendMoveDown()
+  {
+    sendMessage("Cube", "MoveDown");
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <Unity className="unity-container" unityProvider={unityProvider} />
+      <div className="button-container">
+        <button className="button-left" onClick={sendMoveLeft}>Left</button>
+        <button className="button-right" onClick={sendMoveRight}>Right</button>
+        <button className="button-up" onClick={sendMoveUp}>Up</button>
+        <button className="button-down" onClick={sendMoveDown}>Down</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
 export default App
