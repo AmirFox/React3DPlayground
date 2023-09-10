@@ -1,42 +1,60 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+
+/* Center the Unity element in the viewport */
+.container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 85vw;
+  overflow: hidden;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Style for the Unity element */
+.unity-container {
+  /* Set your desired dimensions */
+  width: 80vw;
+  height: 80vh;
+  padding-left: 18%;
+  justify-content: center;
+  max-width: 800px;
+  max-height: 800px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style for the D-pad button container */
+.button-container {
+  position:absolute;
+  padding-left: 15pc;
+  bottom: 10%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Style for individual D-pad buttons */
+.button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px;
 }
 
-.card {
-  padding: 2em;
+.button:hover {
+  background-color: #2980b9;
 }
 
-.read-the-docs {
-  color: #888;
+/* Define D-pad button arrows */
+.button-up::before {
+  content: '↑';
+}
+
+.button-down::before {
+  content: '↓';
+}
+
+.button-left::before {
+  content: '←';
+}
+
+.button-right::before {
+  content: '→';
 }
